@@ -39,6 +39,7 @@
 		FF0000000000000000000042 /* GoalTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000042 /* GoalTimelineView.swift */; };
 		FF0000000000000000000043 /* GoalEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000043 /* GoalEditorView.swift */; };
 		FF0000000000000000000046 /* GoalCreationWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000044 /* GoalCreationWizardView.swift */; };
+		FF0000000000000000000047 /* GoalOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000045 /* GoalOnboardingView.swift */; };
 		FF0000000000000000000044 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000040 /* Goal.swift */; };
 		FF0000000000000000000045 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000041 /* Milestone.swift */; };
 		FF000000000000000000A000 /* NextSliceWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CC000000000000000000A001 /* NextSliceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -101,6 +102,7 @@
 		EE0000000000000000000042 /* GoalTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTimelineView.swift; sourceTree = "<group>"; };
 		EE0000000000000000000043 /* GoalEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEditorView.swift; sourceTree = "<group>"; };
 		EE0000000000000000000044 /* GoalCreationWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationWizardView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000045 /* GoalOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalOnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				EE0000000000000000000012 /* TodayView.swift */,
+				EE0000000000000000000045 /* GoalOnboardingView.swift */,
 				EE0000000000000000000011 /* MorningModeView.swift */,
 				EE000000000000000000000F /* DayActiveView.swift */,
 				EE0000000000000000000010 /* EveningModeView.swift */,
@@ -369,6 +372,7 @@
 				FF0000000000000000000042 /* GoalTimelineView.swift in Sources */,
 				FF0000000000000000000043 /* GoalEditorView.swift in Sources */,
 				FF0000000000000000000046 /* GoalCreationWizardView.swift in Sources */,
+				FF0000000000000000000047 /* GoalOnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

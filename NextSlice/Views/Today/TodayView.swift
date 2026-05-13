@@ -13,6 +13,9 @@ import SwiftData
 struct TodayView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \DailyEntry.date, order: .reverse) private var entries: [DailyEntry]
+    /// All goals ever created — including archived ones. Used to decide whether
+    /// the user has ever passed through the goal-setting wizard.
+    @Query private var anyTimeGoals: [Goal]
 
     @State private var showDeleteConfirm: Bool = false
 
@@ -26,19 +29,29 @@ struct TodayView: View {
     private var mode: TodayMode {
         let hour = Calendar.current.component(.hour, from: .now)
         let isEvening = hour >= 18
-        switch (isEvening, todayEntry, todayEntry?.isReflectionComplete ?? false) {
-        case (false, .none, _):     return .morning
-        case (false, .some, _):     return .active
-        case (true,  .none, _):     return .morning   // Still need an intent first
-        case (true,  .some, true):  return .completed
-        case (true,  .some, false): return .evening
+        let baseMode: TodayMode = {
+            switch (isEvening, todayEntry, todayEntry?.isReflectionComplete ?? false) {
+            case (false, .none, _):     return .morning
+            case (false, .some, _):     return .active
+            case (true,  .none, _):     return .morning
+            case (true,  .some, true):  return .completed
+            case (true,  .some, false): return .evening
+            }
+        }()
+        // Gate: if the user is about to write today's intent but has never set
+        // up a goal, route them through the onboarding first.
+        if baseMode == .morning && anyTimeGoals.isEmpty {
+            return .needsGoal
         }
+        return baseMode
     }
 
     var body: some View {
         NavigationStack {
             Group {
                 switch mode {
+                case .needsGoal:
+                    GoalOnboardingView()
                 case .morning:
                     MorningModeView()
                 case .active:
@@ -101,5 +114,5 @@ struct TodayView: View {
 }
 
 enum TodayMode {
-    case morning, active, evening, completed
+    case needsGoal, morning, active, evening, completed
 }
