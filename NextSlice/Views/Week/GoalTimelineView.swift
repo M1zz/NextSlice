@@ -10,7 +10,7 @@ struct GoalTimelineView: View {
     private var goals: [Goal]
 
     @State private var editingGoal: Goal?
-    @State private var newGoalDraft: Goal?
+    @State private var showWizard: Bool = false
     @State private var editingMilestone: Milestone?
     @State private var addMilestoneForGoal: Goal?
 
@@ -32,8 +32,8 @@ struct GoalTimelineView: View {
         .sheet(item: $editingGoal) { goal in
             GoalEditorView(goal: goal)
         }
-        .sheet(item: $newGoalDraft) { draft in
-            GoalEditorView(goal: draft, isNew: true)
+        .sheet(isPresented: $showWizard) {
+            GoalCreationWizardView()
         }
         .sheet(item: $editingMilestone) { ms in
             MilestoneEditorView(milestone: ms)
@@ -51,29 +51,45 @@ struct GoalTimelineView: View {
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.secondary)
             Spacer()
-            Button {
-                let draft = Goal(title: "")
-                newGoalDraft = draft
-            } label: {
-                Label("목표 추가", systemImage: "plus.circle")
-                    .font(.caption)
+            if !goals.isEmpty {
+                Button {
+                    showWizard = true
+                } label: {
+                    Label("목표 추가", systemImage: "plus.circle")
+                        .font(.caption)
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.tint)
             }
-            .buttonStyle(.plain)
-            .foregroundStyle(.tint)
         }
     }
 
     private var emptyState: some View {
-        VStack(spacing: 6) {
-            Text("아직 목표가 없어요.")
-                .font(.subheadline)
-            Text("쪼개진 마일스톤이 타임라인 위 점으로 떠요.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+        Button {
+            showWizard = true
+        } label: {
+            VStack(spacing: 10) {
+                Image(systemName: "flag.checkered")
+                    .font(.system(size: 28, weight: .light))
+                    .foregroundStyle(.tint)
+                Text("첫 목표 만들기")
+                    .font(.headline)
+                    .foregroundStyle(.primary)
+                Text("큰 목표 하나와 작은 첫 발걸음을 함께 정해요.\n3단계면 끝나요.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 26)
+            .background(.tint.opacity(0.08), in: RoundedRectangle(cornerRadius: 14))
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .strokeBorder(Color.accentColor.opacity(0.3),
+                                  style: StrokeStyle(lineWidth: 1, dash: [4, 4]))
+            )
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 20)
-        .background(Color(.tertiarySystemFill), in: RoundedRectangle(cornerRadius: 12))
+        .buttonStyle(.plain)
     }
 
     // MARK: - Legend (goal titles + color swatches)

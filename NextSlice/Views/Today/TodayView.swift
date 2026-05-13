@@ -14,6 +14,8 @@ struct TodayView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \DailyEntry.date, order: .reverse) private var entries: [DailyEntry]
 
+    @State private var showDeleteConfirm: Bool = false
+
     private var todayEntry: DailyEntry? {
         let today = Date.now.dayStart
         return entries.first {
@@ -50,7 +52,51 @@ struct TodayView: View {
             .animation(.default, value: mode)
             .navigationTitle("오늘")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if todayEntry != nil {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Menu {
+                            Button(role: .destructive) {
+                                showDeleteConfirm = true
+                            } label: {
+                                Label("오늘 기록 삭제", systemImage: "trash")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                        }
+                    }
+                }
+            }
+            .confirmationDialog(
+                "오늘 기록을 삭제할까요?",
+                isPresented: $showDeleteConfirm,
+                titleVisibility: .visible
+            ) {
+                Button("삭제", role: .destructive) { deleteToday() }
+                Button("취소", role: .cancel) {}
+            } message: {
+                Text("오늘 작성한 의도와 메모, 그리고 오늘 회고에서 만든 Finding이 함께 사라져요. 되돌릴 수 없습니다.")
+            }
         }
+    }
+
+    private func deleteToday() {
+        guard let entry = todayEntry else { return }
+
+        // Remove any Finding promoted from this entry (sourceEntry backlink).
+        let today = entry.date
+        var fdesc = FetchDescriptor<Finding>(
+            predicate: #Predicate { $0.sourceDate == today }
+        )
+        fdesc.fetchLimit = 16
+        if let findings = try? context.fetch(fdesc) {
+            for f in findings where f.sourceEntry == entry {
+                context.delete(f)
+            }
+        }
+
+        context.delete(entry)
+        try? context.save()
     }
 }
 
