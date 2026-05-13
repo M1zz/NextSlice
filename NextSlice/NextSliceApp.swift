@@ -19,6 +19,8 @@ struct NextSliceApp: App {
             Finding.self,
             WeeklyPattern.self,
             UserStage.self,
+            Goal.self,
+            Milestone.self,
         ])
 
         // Use App Group URL once the group is configured. Falls back to local

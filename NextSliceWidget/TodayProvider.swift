@@ -29,7 +29,7 @@ struct TodayProvider: TimelineProvider {
     // MARK: - Load
 
     private func loadEntry() -> TodayWidgetEntry {
-        let schema = Schema([DailyEntry.self, UserStage.self, Finding.self, WeeklyPattern.self])
+        let schema = Schema([DailyEntry.self, UserStage.self, Finding.self, WeeklyPattern.self, Goal.self, Milestone.self])
 
         guard let groupURL = FileManager.default.containerURL(
             forSecurityApplicationGroupIdentifier: AppGroup.identifier

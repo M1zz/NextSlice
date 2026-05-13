@@ -25,6 +25,8 @@ struct WeekView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     header
+                    GoalTimelineView()
+                    Divider()
                     TrustGaugeView(stage: stage)
                     thisWeekSection
                     if let recall = recalledFinding {
