@@ -31,8 +31,8 @@ struct NotebookView: View {
                     list
                 }
             }
-            .navigationTitle("Notebook")
-            .searchable(text: $searchText, prompt: "Search findings")
+            .navigationTitle("노트")
+            .searchable(text: $searchText, prompt: "Finding 검색")
         }
     }
 
@@ -41,9 +41,9 @@ struct NotebookView: View {
             Image(systemName: "book.closed")
                 .font(.system(size: 48, weight: .ultraLight))
                 .foregroundStyle(.secondary)
-            Text("Your Findings will live here.")
+            Text("여기에 Finding이 쌓여요.")
                 .font(.headline)
-            Text("Complete a daily reflection to add your first one.")
+            Text("오늘 회고를 완료하면 첫 Finding이 들어와요.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -57,7 +57,7 @@ struct NotebookView: View {
                 Section {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
-                            tagChip("All", isOn: selectedTag == nil) { selectedTag = nil }
+                            tagChip("전체", isOn: selectedTag == nil) { selectedTag = nil }
                             ForEach(allTags, id: \.self) { tag in
                                 tagChip(tag, isOn: selectedTag == tag) {
                                     selectedTag = selectedTag == tag ? nil : tag
@@ -137,7 +137,7 @@ struct FindingDetailView: View {
                     .foregroundStyle(.secondary)
 
                     if finding.ageInDays > 0 {
-                        Text("· \(finding.ageInDays) days ago")
+                        Text("· \(finding.ageInDays)일 전")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -159,7 +159,7 @@ struct FindingDetailView: View {
                 if let entry = finding.sourceEntry {
                     Divider()
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("FROM THIS DAY")
+                        Text("그날의 의도")
                             .font(.caption2.weight(.semibold))
                             .foregroundStyle(.secondary)
                         Text(entry.intent)
@@ -170,7 +170,7 @@ struct FindingDetailView: View {
             }
             .padding(20)
         }
-        .navigationTitle("Finding")
+        .navigationTitle("발견")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -19,8 +19,8 @@ struct EveningModeView: View {
     @State private var futureAction: String = ""
 
     private let feelingOptions = [
-        "Stuck", "Flow", "Eureka", "Tired",
-        "Confused", "Confident", "Curious", "Bored"
+        "막힘", "몰입", "유레카", "지침",
+        "헷갈림", "자신감", "호기심", "지루함"
     ]
 
     var body: some View {
@@ -29,11 +29,11 @@ struct EveningModeView: View {
                 intentRecap
 
                 section(
-                    label: "F1 · FACT",
-                    hint: "What actually happened?"
+                    label: "F1 · 사실 (Fact)",
+                    hint: "실제로 무엇이 있었나요?"
                 ) {
                     TextField(
-                        "Tried Modifier injection → conflict. Used EnvironmentValues instead.",
+                        "예: Modifier 주입 시도 → 충돌. EnvironmentValues로 해결.",
                         text: $fact,
                         axis: .vertical
                     )
@@ -41,7 +41,7 @@ struct EveningModeView: View {
                 }
 
                 section(
-                    label: "F2 · FEELING",
+                    label: "F2 · 느낌 (Feeling)",
                     hint: nil
                 ) {
                     feelingChipRow
@@ -50,11 +50,11 @@ struct EveningModeView: View {
                 findingSection
 
                 section(
-                    label: "F4 · FUTURE",
-                    hint: "Becomes tomorrow's suggested intent."
+                    label: "F4 · 다음 행동 (Future)",
+                    hint: "내일의 의도 후보가 돼요."
                 ) {
                     TextField(
-                        "Move Color tokens to the same pattern",
+                        "예: Color 토큰도 같은 패턴으로 옮기기",
                         text: $futureAction,
                         axis: .vertical
                     )
@@ -70,7 +70,7 @@ struct EveningModeView: View {
 
     private var intentRecap: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("TODAY'S ONE THING")
+            Text("오늘의 한 가지")
                 .font(.caption2.weight(.semibold))
                 .foregroundStyle(.secondary)
             Text(entry.intent)
@@ -104,12 +104,12 @@ struct EveningModeView: View {
             HStack {
                 Image(systemName: "lightbulb.fill")
                     .foregroundStyle(.tint)
-                Text("F3 · FINDING — this is the one that stays in your Notebook")
+                Text("F3 · 발견 (Finding) — 이 한 줄만 노트에 남아요")
                     .font(.caption.weight(.medium))
                     .foregroundStyle(.tint)
             }
             TextField(
-                "Style injection is values, not modifiers. EnvironmentValues fits.",
+                "예: 스타일 주입은 modifier가 아니라 value. EnvironmentValues가 맞다.",
                 text: $finding,
                 axis: .vertical
             )
@@ -128,7 +128,7 @@ struct EveningModeView: View {
             commit()
             dismiss()
         } label: {
-            Text("Complete reflection · seed tomorrow")
+            Text("회고 완료 · 내일 준비")
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 4)
         }

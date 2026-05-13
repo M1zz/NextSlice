@@ -26,14 +26,14 @@ struct MorningModeView: View {
                 projectChip
             }
 
-            Text("What will you learn today?")
+            Text("오늘은 무엇을 배워볼까요?")
                 .font(.title2.weight(.medium))
                 .padding(.top, 4)
 
             intentField
 
             HStack {
-                Label("One line only — don't split it.",
+                Label("한 줄로 충분해요. 쪼개지 마세요.",
                       systemImage: "info.circle")
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -43,8 +43,8 @@ struct MorningModeView: View {
                     .foregroundStyle(intent.count >= maxIntent ? .red : .secondary)
             }
 
-            DisclosureGroup("Project (optional)") {
-                TextField("e.g. devkoan, NextSlice, Indonesia trip", text: $project)
+            DisclosureGroup("프로젝트 (선택)") {
+                TextField("예: devkoan, NextSlice, 인도네시아 여행", text: $project)
                     .textFieldStyle(.roundedBorder)
             }
             .font(.subheadline)
@@ -67,7 +67,7 @@ struct MorningModeView: View {
 
     private var header: some View {
         HStack {
-            Text("MORNING")
+            Text("아침")
                 .font(.caption2.weight(.semibold))
                 .foregroundStyle(.secondary)
             Spacer()
@@ -111,7 +111,7 @@ struct MorningModeView: View {
         Button {
             start()
         } label: {
-            Text("Start today")
+            Text("오늘 시작하기")
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 4)
         }
@@ -156,11 +156,11 @@ struct OverdueReflectionSheet: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            Label("Yesterday is still open", systemImage: "exclamationmark.circle")
+            Label("어제가 아직 열려 있어요", systemImage: "exclamationmark.circle")
                 .font(.headline)
                 .foregroundStyle(.orange)
 
-            Text("Close yesterday before starting today. Short is fine — Finding is the only required field.")
+            Text("오늘을 시작하기 전에 어제를 닫아주세요. 짧아도 좋아요 — Finding만 필수예요.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)

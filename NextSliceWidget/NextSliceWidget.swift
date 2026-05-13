@@ -17,8 +17,8 @@ struct NextSliceTodayWidget: Widget {
             TodayWidgetView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("Today's slice")
-        .description("Your one thing, always visible.")
+        .configurationDisplayName("오늘의 한 조각")
+        .description("당신의 한 가지를 언제나.")
         .supportedFamilies([
             .systemSmall,
             .accessoryRectangular,

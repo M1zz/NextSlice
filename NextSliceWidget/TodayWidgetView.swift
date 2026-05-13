@@ -23,7 +23,7 @@ struct TodayWidgetView: View {
     private var smallBody: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                Text("DAY \(entry.dayNumber)")
+                Text("\(entry.dayNumber)일차")
                     .font(.system(size: 10, weight: .semibold))
                     .foregroundStyle(.secondary)
                 Spacer()
@@ -39,7 +39,7 @@ struct TodayWidgetView: View {
                 .lineLimit(4)
                 .multilineTextAlignment(.leading)
             Spacer()
-            Text("Today's slice")
+            Text("오늘의 한 조각")
                 .font(.system(size: 9, weight: .regular))
                 .foregroundStyle(.tertiary)
         }
@@ -50,7 +50,7 @@ struct TodayWidgetView: View {
             HStack(spacing: 4) {
                 Image(systemName: "sun.max")
                     .font(.system(size: 10, weight: .semibold))
-                Text("Today's slice")
+                Text("오늘의 한 조각")
                     .font(.system(size: 10, weight: .semibold))
                 if entry.isReflectionPending {
                     Spacer()
@@ -74,9 +74,9 @@ struct TodayWidgetView: View {
         ZStack {
             AccessoryWidgetBackground()
             VStack(spacing: 0) {
-                Text("D\(entry.dayNumber)")
+                Text("\(entry.dayNumber)일")
                     .font(.system(size: 12, weight: .semibold))
-                Text("slice")
+                Text("조각")
                     .font(.system(size: 9))
             }
         }

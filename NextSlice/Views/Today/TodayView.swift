@@ -48,7 +48,7 @@ struct TodayView: View {
                 }
             }
             .animation(.default, value: mode)
-            .navigationTitle("Today")
+            .navigationTitle("오늘")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

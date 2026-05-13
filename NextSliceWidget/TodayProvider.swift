@@ -9,7 +9,7 @@ struct TodayProvider: TimelineProvider {
     func placeholder(in context: Context) -> TodayWidgetEntry {
         TodayWidgetEntry(
             date: .now,
-            intent: "Today's one slice",
+            intent: "오늘의 한 조각",
             isReflectionPending: false,
             dayNumber: 1
         )
@@ -69,7 +69,7 @@ struct TodayProvider: TimelineProvider {
 
             return TodayWidgetEntry(
                 date: .now,
-                intent: todayEntry?.intent ?? "Set today's one slice",
+                intent: todayEntry?.intent ?? "오늘의 한 조각을 정해주세요",
                 isReflectionPending: pending,
                 dayNumber: day
             )
@@ -87,7 +87,7 @@ struct TodayWidgetEntry: TimelineEntry {
 
     static let empty = TodayWidgetEntry(
         date: .now,
-        intent: "Open NextSlice to start",
+        intent: "NextSlice를 열어 시작해주세요",
         isReflectionPending: false,
         dayNumber: 1
     )

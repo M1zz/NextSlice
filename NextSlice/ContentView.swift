@@ -8,13 +8,13 @@ struct ContentView: View {
     var body: some View {
         TabView {
             TodayView()
-                .tabItem { Label("Today", systemImage: timeIcon) }
+                .tabItem { Label("오늘", systemImage: timeIcon) }
 
             NotebookView()
-                .tabItem { Label("Notebook", systemImage: "book.closed") }
+                .tabItem { Label("노트", systemImage: "book.closed") }
 
             WeekView()
-                .tabItem { Label("Week", systemImage: "calendar.badge.clock") }
+                .tabItem { Label("주간", systemImage: "calendar.badge.clock") }
         }
         .task { await ensureStage() }
     }

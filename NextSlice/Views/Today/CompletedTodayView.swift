@@ -14,16 +14,16 @@ struct CompletedTodayView: View {
                 .foregroundStyle(.tint)
 
             VStack(spacing: 6) {
-                Text("Today is closed.")
+                Text("오늘은 마감되었어요.")
                     .font(.title2.weight(.medium))
-                Text("One more slice in the notebook.")
+                Text("노트에 한 조각 더 쌓였어요.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
 
             if let future = entry.futureAction {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("TOMORROW'S SEED")
+                    Text("내일의 씨앗")
                         .font(.caption2.weight(.semibold))
                         .foregroundStyle(.secondary)
                     Text(future)

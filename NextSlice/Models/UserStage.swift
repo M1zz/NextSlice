@@ -46,17 +46,17 @@ enum StageMode: String, Codable, CaseIterable, Identifiable {
 
     var label: String {
         switch self {
-        case .soft:   return "Soft"
-        case .medium: return "Medium"
-        case .hard:   return "Hard"
+        case .soft:   return "소프트"
+        case .medium: return "미디엄"
+        case .hard:   return "하드"
         }
     }
 
     var blurb: String {
         switch self {
-        case .soft:   return "Forming the habit. Skipping is fine."
-        case .medium: return "Reflection prompts first. Override visible."
-        case .hard:   return "No new intent until yesterday is closed."
+        case .soft:   return "습관 형성기. 건너뛰어도 괜찮아요."
+        case .medium: return "회고 안내가 먼저 떠요. 무시할 수도 있어요."
+        case .hard:   return "어제를 닫기 전엔 오늘을 시작할 수 없어요."
         }
     }
 

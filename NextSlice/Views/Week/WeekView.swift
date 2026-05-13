@@ -35,7 +35,7 @@ struct WeekView: View {
                 }
                 .padding(20)
             }
-            .navigationTitle("Week")
+            .navigationTitle("주간")
             .navigationBarTitleDisplayMode(.large)
             .task { await prepare() }
         }
@@ -43,22 +43,22 @@ struct WeekView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text("SUNDAY · WEEKLY RETROSPECTIVE")
+            Text("일요일 · 주간 회고")
                 .font(.caption2.weight(.semibold))
                 .foregroundStyle(.secondary)
-            Text("This week's findings")
+            Text("이번 주의 Finding")
                 .font(.title2.weight(.medium))
         }
     }
 
     private var thisWeekSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("THIS WEEK · \(thisWeekFindings.count) FINDINGS")
+            Text("이번 주 · Finding \(thisWeekFindings.count)개")
                 .font(.caption2.weight(.semibold))
                 .foregroundStyle(.secondary)
 
             if thisWeekFindings.isEmpty {
-                Text("No findings yet this week. Complete a daily reflection to seed the retro.")
+                Text("이번 주 Finding이 아직 없어요. 오늘 회고를 완료하면 주간 회고가 채워져요.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .padding(.vertical, 8)
@@ -90,7 +90,7 @@ struct WeekView: View {
     private func recallSection(_ finding: Finding) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Label(
-                "From the past · \(finding.ageInDays) days ago",
+                "지난 기록 · \(finding.ageInDays)일 전",
                 systemImage: "arrow.uturn.backward"
             )
             .font(.caption.weight(.medium))
@@ -104,11 +104,11 @@ struct WeekView: View {
                 Text("\u{201C}\(finding.text)\u{201D}")
                     .font(.callout.weight(.medium))
 
-                Text("Does this still apply? Answer in one line.")
+                Text("지금도 유효한가요? 한 줄로 답해보세요.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
-                TextField("Yes/no/changed — and why.", text: $recallResponse, axis: .vertical)
+                TextField("예/아니오/달라졌다 — 그리고 그 이유.", text: $recallResponse, axis: .vertical)
                     .lineLimit(2...4)
                     .padding(10)
                     .background(Color(.systemBackground), in: RoundedRectangle(cornerRadius: 8))
@@ -124,11 +124,11 @@ struct WeekView: View {
 
     private var patternSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("ONE LINE — WHAT'S THE PATTERN?")
+            Text("한 줄로 — 어떤 패턴이 보이나요?")
                 .font(.caption2.weight(.semibold))
                 .foregroundStyle(.secondary)
             TextField(
-                "Abstraction-related findings keep recurring. Try copy-three-times-first next week.",
+                "예: 추상화 관련 finding이 반복된다. 다음 주엔 3번 복붙 후에 추상화하기.",
                 text: $patternText,
                 axis: .vertical
             )
@@ -146,7 +146,7 @@ struct WeekView: View {
             Button {
                 exportCard()
             } label: {
-                Label("Export card", systemImage: "square.and.arrow.up")
+                Label("카드 내보내기", systemImage: "square.and.arrow.up")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
@@ -154,7 +154,7 @@ struct WeekView: View {
             Button {
                 commit()
             } label: {
-                Text("Complete week")
+                Text("주간 마감")
                     .frame(maxWidth: .infinity)
                     .fontWeight(.medium)
             }

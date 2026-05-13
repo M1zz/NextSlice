@@ -12,15 +12,15 @@ struct SettingsView: View {
             Form {
                 if let stage = stages.first {
                     Section {
-                        LabeledContent("Day", value: "\(stage.daysSinceStart + 1)")
-                        LabeledContent("Auto stage", value: autoStageLabel(stage))
+                        LabeledContent("일차", value: "\(stage.daysSinceStart + 1)")
+                        LabeledContent("자동 단계", value: autoStageLabel(stage))
                     } header: {
-                        Text("Trust gauge")
+                        Text("신뢰 게이지")
                     }
 
                     Section {
-                        Picker("Manual override", selection: overrideBinding(stage)) {
-                            Text("Auto").tag(StageMode?.none)
+                        Picker("수동 설정", selection: overrideBinding(stage)) {
+                            Text("자동").tag(StageMode?.none)
                             ForEach(StageMode.allCases) { mode in
                                 Text(mode.label).tag(StageMode?.some(mode))
                             }
@@ -36,13 +36,13 @@ struct SettingsView: View {
                                 .foregroundStyle(.secondary)
                         }
                     } header: {
-                        Text("Enforcement")
+                        Text("강제 단계")
                     } footer: {
-                        Text("Auto follows the natural gradient: Soft (1–7), Medium (8–21), Hard (22+). Override at your discretion.")
+                        Text("자동은 자연 곡선을 따라요: 소프트(1–7일), 미디엄(8–21일), 하드(22일+). 필요할 땐 직접 바꿔도 좋아요.")
                     }
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle("설정")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
@@ -59,9 +59,9 @@ struct SettingsView: View {
 
     private func autoStageLabel(_ stage: UserStage) -> String {
         switch stage.daysSinceStart {
-        case ..<7:  return "Soft"
-        case ..<21: return "Medium"
-        default:    return "Hard"
+        case ..<7:  return "소프트"
+        case ..<21: return "미디엄"
+        default:    return "하드"
         }
     }
 }

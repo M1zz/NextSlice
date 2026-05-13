@@ -29,7 +29,7 @@ struct DayActiveView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("TODAY'S ONE THING")
+            Text("오늘의 한 가지")
                 .font(.caption2.weight(.semibold))
                 .foregroundStyle(.secondary)
             if let project = entry.project {
@@ -43,7 +43,7 @@ struct DayActiveView: View {
     private var midNotesSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("Observations")
+                Text("메모")
                     .font(.subheadline.weight(.medium))
                 Spacer()
                 Text("\(entry.midNotes.count)")
@@ -64,7 +64,7 @@ struct DayActiveView: View {
             }
 
             HStack {
-                TextField("Quick observation…", text: $newNote)
+                TextField("짧은 메모…", text: $newNote)
                     .textFieldStyle(.roundedBorder)
                 Button {
                     addNote()
